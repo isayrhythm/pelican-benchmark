@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>鹈鹕 Benchmark</title>
+  <rect width="64" height="64" rx="16" fill="#172822"/>
+  <!-- 鹈鹕的头颈与大喙囊，小尺寸下保留清晰轮廓。 -->
+  <path d="M13 57c-1-10 1-18 7-24-6-4-8-10-5-16 3-8 13-12 21-8 7 3 9 10 7 17-2 7-10 12-12 18-2 4-1 9 1 13Z" fill="#fff8e3"/>
+  <path d="M37 26 59 28c-1 9-9 16-18 16-5 0-8-5-9-10Z" fill="#f5c474" stroke="#bd803d" stroke-width="1.8" stroke-linejoin="round"/>
+  <path d="M35 23 60 27c2 1 2 4 0 6l-3-3-23-1Z" fill="#f3a64a" stroke="#bd803d" stroke-width="1.8" stroke-linejoin="round"/>
+  <path d="M18 42c4 1 7-1 10-4-3 7-5 13-3 19h-7Z" fill="#d9e5d6"/>
+  <circle cx="33" cy="19" r="4.3" fill="#e7c77a"/>
+  <circle cx="34" cy="19" r="2.5" fill="#17392f"/>
+  <circle cx="34.8" cy="18.2" r=".8" fill="#fff"/>
+  <path d="m20 12-2-4m7 2V6" stroke="#fff8e3" stroke-width="2.5" stroke-linecap="round"/>
+</svg>

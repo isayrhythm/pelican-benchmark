@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>鹈鹕骑自行车 SVG 动画</title>
+<style>
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#bfe8ff;
+  overflow:hidden;
+}
+svg{
+  width:900px;
+  height:600px;
+}
+.wheel{
+  animation:spin 2s linear infinite;
+  transform-origin:center;
+}
+.pelican{
+  animation:ride 1s ease-in-out infinite;
+}
+@keyframes spin{
+  from{transform:rotate(0deg)}
+  to{transform:rotate(360deg)}
+}
+@keyframes ride{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
+}
+.cloud{
+  animation:move 18s linear infinite;
+}
+@keyframes move{
+  from{transform:translateX(-100px)}
+  to{transform:translateX(1000px)}
+}
+</style>
+<!-- Benchmark 嵌入适配：仅调整展示尺寸，不改变作品的绘图和动画逻辑。 -->
+<style>
+html.benchmark-embed,html.benchmark-embed body{width:100%;height:100%;min-height:0;margin:0;padding:0;overflow:hidden}
+html.benchmark-embed body{display:block}
+html.benchmark-embed .container,html.benchmark-embed .canvas-wrapper{width:100%;height:100%;max-width:none;border-radius:0;box-shadow:none;overflow:hidden}
+html.benchmark-embed .header,html.benchmark-embed .controls{display:none}
+html.benchmark-embed svg{display:block;width:100%;height:100%}
+</style>
+<script>
+if(new URLSearchParams(location.search).get('embed')==='1'){
+ document.documentElement.classList.add('benchmark-embed');
+ document.addEventListener('DOMContentLoaded',()=>{
+  const artwork=document.getElementById('bikeSvg')||document.querySelector('svg');
+  if(artwork)artwork.setAttribute('preserveAspectRatio','xMidYMid slice');
+ });
+}
+</script>
+</head>
+
+<body>
+<svg viewBox="0 0 900 600">
+
+<!-- sky -->
+<rect width="900" height="600" fill="#bfe8ff"/>
+<circle cx="760" cy="100" r="55" fill="#ffd95a"/>
+
+<!-- clouds -->
+<g class="cloud" fill="white" opacity="0.8">
+  <ellipse cx="160" cy="130" rx="70" ry="35"/>
+  <ellipse cx="220" cy="120" rx="50" ry="30"/>
+  <ellipse cx="500" cy="180" rx="80" ry="40"/>
+</g>
+
+<!-- ground -->
+<path d="M0 470 Q450 430 900 470 L900 600 L0 600Z" fill="#8fd36b"/>
+
+<!-- bicycle -->
+<g transform="translate(300,350)">
+  <g class="wheel">
+    <circle cx="0" cy="80" r="65" fill="none" stroke="#333" stroke-width="8"/>
+    <circle cx="260" cy="80" r="65" fill="none" stroke="#333" stroke-width="8"/>
+  </g>
+
+  <path d="M0 80 L100 0 L170 80 L260 80 L100 0 L140 80"
+        fill="none" stroke="#555" stroke-width="7"/>
+
+  <circle cx="100" cy="0" r="10" fill="#333"/>
+  <line x1="100" y1="0" x2="90" y2="-45" stroke="#333" stroke-width="6"/>
+  <line x1="90" y1="-45" x2="125" y2="-45" stroke="#333" stroke-width="6"/>
+
+  <circle cx="140" cy="80" r="18" fill="none" stroke="#333" stroke-width="5"/>
+  <line x1="140" y1="80" x2="120" y2="100" stroke="#333" stroke-width="5"/>
+  <line x1="140" y1="80" x2="160" y2="60" stroke="#333" stroke-width="5"/>
+</g>
+
+<!-- pelican -->
+<g class="pelican" transform="translate(380,180)">
+  <!-- body -->
+  <ellipse cx="120" cy="130" rx="90" ry="110" fill="#f5f5f5" stroke="#444" stroke-width="5"/>
+
+  <!-- neck -->
+  <path d="M90 80 Q80 0 140 -30" fill="none" stroke="#f5f5f5" stroke-width="45"/>
+
+  <!-- head -->
+  <circle cx="150" cy="-35" r="45" fill="#fff" stroke="#444" stroke-width="5"/>
+
+  <!-- beak -->
+  <path d="M185 -30 Q270 -10 185 30 Q160 0 185 -30"
+        fill="#f4a340" stroke="#444" stroke-width="4"/>
+
+  <!-- eye -->
+  <circle cx="165" cy="-45" r="6" fill="black"/>
+
+  <!-- wings -->
+  <path d="M80 100 Q0 40 20 180 Q70 160 120 130"
+        fill="#ddd" stroke="#444" stroke-width="4"/>
+
+  <path d="M155 100 Q230 50 250 160"
+        fill="#ddd" stroke="#444" stroke-width="4"/>
+
+  <!-- legs on pedals -->
+  <line x1="100" y1="220" x2="80" y2="270" stroke="#e89b30" stroke-width="8"/>
+  <line x1="160" y1="220" x2="190" y2="270" stroke="#e89b30" stroke-width="8"/>
+</g>
+
+</svg>
+</body>
+</html>
