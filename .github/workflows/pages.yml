@@ -29,6 +29,7 @@ jobs:
         run: |
           mkdir -p _site
           cp index.html _site/
+          cp reactions.js _site/
           cp favicon.svg _site/
           cp LICENSE-icons.txt _site/
           cp -r svgs _site/svgs

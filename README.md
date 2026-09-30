@@ -25,27 +25,27 @@
 
 ## 作品
 
-| 模型 / 助手 | Harness | 服务平台 |
-|---|---|---|
-| GPT-6 Astra pro | ChatGPT 网页端 | OpenAI 官方 |
-| GPT-6 Astra | Codex | OpenAI 官方 |
-| GPT-6.1 Sol | Codex | OpenAI 官方 |
-| GPT-6 Sol | Codex | OpenAI 官方 |
-| GPT-5.6 Sol | Codex | OpenAI 官方 |
-| GPT-5.6 Terra | Codex | OpenAI 官方 |
-| GPT-6 Luna | Codex | OpenAI 官方 |
-| GPT-5.6 Luna | Codex | OpenAI 官方 |
-| Dot·OpenAI 个人助手 | Codex | OpenAI 官方 |
-| Gemini 3.8 Flash | DeepSeek Harness | Google Antigravity |
-| Gemini 3.1 Pro | DeepSeek Harness | Google Antigravity |
-| Gemini 3.8 Flash | Gemini 网页端 | Google 官方 |
-| Opus 4.6 | DeepSeek Harness | Google Antigravity |
-| DeepSeek V4.1 Flash | DeepSeek Harness | DeepSeek 官方 API |
-| DeepSeek V4 Pro 0813 | DeepSeek Harness | DeepSeek 官方 API |
-| Kimi K3 | DeepSeek Harness | Kimi 官方 API |
-| Qwen3.8-Max-0902 | DeepSeek Harness | Qwen 官方 |
-| MiMo-V2.5-Pro | DeepSeek Harness | 小米官方 |
-| MiniMax-M3 | DeepSeek Harness | MiniMax 官方 |
+| 模型 / 助手 | Harness | 服务平台 | 推理等级 |
+|---|---|---|---|
+| GPT-6 Astra pro | ChatGPT 网页端 | OpenAI 官方 | 中等（medium） |
+| GPT-6 Astra | Codex | OpenAI 官方 | 中等（medium） |
+| GPT-6.1 Sol | Codex | OpenAI 官方 | 中等（medium） |
+| GPT-6 Sol | Codex | OpenAI 官方 | 中等（medium） |
+| GPT-5.6 Sol | Codex | OpenAI 官方 | 中等（medium） |
+| GPT-5.6 Terra | Codex | OpenAI 官方 | 中等（medium） |
+| GPT-6 Luna | Codex | OpenAI 官方 | 中等（medium） |
+| GPT-5.6 Luna | Codex | OpenAI 官方 | 中等（medium） |
+| Dot·OpenAI 个人助手 | Codex | OpenAI 官方 | 中等（medium） |
+| Gemini 3.8 Flash | DeepSeek Harness | Google Antigravity | 中等（medium） |
+| Gemini 3.1 Pro | DeepSeek Harness | Google Antigravity | 中等（medium） |
+| Gemini 3.8 Flash | Gemini 网页端 | Google 官方 | 中等（medium） |
+| Opus 4.6 | DeepSeek Harness | Google Antigravity | 中等（medium） |
+| DeepSeek V4.1 Flash | DeepSeek Harness | DeepSeek 官方 API | 中等（medium） |
+| DeepSeek V4 Pro 0813 | DeepSeek Harness | DeepSeek 官方 API | 中等（medium） |
+| Kimi K3 | DeepSeek Harness | Kimi 官方 API | 中等（medium） |
+| Qwen3.8-Max-0902 | DeepSeek Harness | Qwen 官方 | 中等（medium） |
+| MiMo-V2.5-Pro | DeepSeek Harness | 小米官方 | 中等（medium） |
+| MiniMax-M3 | DeepSeek Harness | MiniMax 官方 | 中等（medium） |
 
 “—”表示未提供的信息，不作推断。
 

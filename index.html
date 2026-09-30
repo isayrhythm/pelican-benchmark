@@ -8,6 +8,21 @@
 .test-date{flex-shrink:0}
 .card.provider-start{grid-column-start:1}
 .provider-divider{grid-column:1/-1;height:1px;background:#35453c;margin:8px 0;border:0}
+.reactions{border-top:1px solid #35453c;padding:8px;display:flex;flex-wrap:wrap;align-items:center;gap:5px;min-height:48px}
+.reaction-button,.reaction-add{border:1px solid #425449;background:#253129;color:#e1e9df;border-radius:999px;padding:5px 8px;display:inline-flex;align-items:center;gap:5px;font-size:13px;min-height:32px}
+.reaction-button[aria-pressed=true]{border-color:#dcf48a;background:#405234;color:#dcf48a}
+.reaction-button:disabled{opacity:.55;cursor:wait}
+.reaction-button[hidden]{display:none}
+.reaction-button:focus-visible,.reaction-add:focus-visible{outline:2px solid #dcf48a;outline-offset:2px}
+.reaction-picker{position:fixed;inset:auto;width:min(340px,calc(100vw - 16px));max-height:75vh;margin:0;padding:12px;border:1px solid #536858;border-radius:12px;background:#1c2421;color:#edf1e8;box-shadow:0 8px 30px #0007;overflow-y:auto}
+.reaction-picker::backdrop{background:transparent}
+.reaction-picker:not(:popover-open){display:none}
+.reaction-picker-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.reaction-picker-header strong{font-size:15px;font-weight:500}
+.reaction-picker-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+.reaction-picker .reaction-button{justify-content:center}
+.reaction-status{font-size:10px;color:#94a59a;flex-basis:100%}
+@media(max-width:768px){.reactions{padding:6px;gap:4px}.reaction-button,.reaction-add{padding:4px 6px;font-size:12px;gap:3px}.reaction-picker-grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}.reaction-picker .reaction-button{font-size:16px;padding:8px 4px}.reaction-picker .reaction-count{font-size:11px}}
 @media(max-width:768px){
  main{padding:24px 12px}
  .gallery-scroll{overflow-x:visible}
@@ -24,7 +39,7 @@
  .tabs{gap:6px;margin-bottom:18px}
  .tab{padding:5px 8px;font-size:12px;gap:5px}
 }
-</style></head><body><main>
+</style><script src="reactions.js?v=20260930-3" defer></script></head><body><main>
 <div class="eyebrow">SVG ANIMATION · MODEL GALLERY</div><h1>鹈鹕 <span>Benchmark</span></h1>
 <nav class="tabs" id="tabs" role="tablist" aria-label="模型系列"></nav>
 <div class="prompt"><span class="prompt-label">PROMPT</span><div class="prompt-text" id="prompt-text">不要联网，全靠你自己创建一个 HTML，内容是 SVG 绘制一个鹈鹕骑自行车的 2D 动画。你不需要任何测试，确认创建，无需询问我。</div><button class="copy-prompt" id="copy-prompt" type="button" aria-label="复制完整提示词">复制</button></div>
@@ -81,6 +96,7 @@ function render(){
   if(index>0&&work.series!==filtered[index-1].series){const divider=document.createElement('div');divider.className='provider-divider';divider.setAttribute('role','separator');gallery.append(divider)}
   const card=document.createElement('article');card.className='card';const head=document.createElement('div');head.className='card-head';const brand=document.createElement('span');brand.className='brand-icon';brand.innerHTML=icons[work.series]||'';brand.setAttribute('aria-hidden','true');const name=document.createElement('span');name.className='model';name.textContent=work.assistant||work.model;head.append(brand,name);
   if(index===0||work.series!==filtered[index-1].series)card.classList.add('provider-start');
+  card.dataset.workId=work.file.replace(/^svgs\//,'').replace(/\.html$/,'');
   const wrap=document.createElement('div');wrap.className='frame-wrap';const frame=document.createElement('iframe');frame.src=work.file+'?embed=1';frame.title=name.textContent;frame.setAttribute('sandbox','allow-scripts');wrap.append(frame);
   const meta=document.createElement('div');meta.className='card-meta';
   [['Harness',work.harness],['平台',work.platform],['测试日期',work.testDate]].filter(([,value])=>value&&value.trim()&&value.trim()!=='未注明').forEach(([label,value])=>{const tag=document.createElement('span');tag.className='meta-tag'+(label==='测试日期'?' test-date':'');tag.textContent=value;tag.title=label+' · '+value;meta.append(tag)});
@@ -90,6 +106,7 @@ function render(){
   card.append(head,meta);
   card.append(wrap);gallery.append(card);
  });
+ window.dispatchEvent(new Event('pelican-gallery-rendered'));
 }
 render();
 const copyPrompt=document.getElementById('copy-prompt');
