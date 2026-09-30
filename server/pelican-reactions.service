@@ -1,0 +1,26 @@
+[Unit]
+Description=Pelican emoji reaction API
+After=network.target
+
+[Service]
+User=pelican
+Group=pelican
+WorkingDirectory=/home/pelican-reactions/server
+Environment=PELICAN_DB=/home/pelican-reactions/data/reactions.sqlite3
+ExecStart=/home/pelican-reactions/venv/bin/gunicorn --bind 127.0.0.1:8792 --workers 2 --threads 4 --timeout 15 --limit-request-line 2048 --limit-request-field_size 4096 app:app
+Restart=on-failure
+RestartSec=3
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/home/pelican-reactions/data
+CapabilityBoundingSet=
+RestrictSUIDSGID=true
+MemoryMax=256M
+CPUQuota=50%
+TasksMax=32
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,9 @@
+[Unit]
+Description=Backup Pelican reaction database
+
+[Service]
+Type=oneshot
+User=pelican
+Group=pelican
+UMask=0077
+ExecStart=/usr/bin/python3 /home/pelican-reactions/server/backup.py

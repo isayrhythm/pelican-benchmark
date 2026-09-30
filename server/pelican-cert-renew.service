@@ -1,0 +1,6 @@
+[Unit]
+Description=Renew Pelican IP HTTPS certificate
+
+[Service]
+Type=oneshot
+ExecStart=/home/pelican-certbot/venv/bin/certbot renew --quiet --deploy-hook "/usr/sbin/apache2ctl graceful"
