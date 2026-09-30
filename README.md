@@ -26,7 +26,7 @@
 
 顶部使用模型供应商胶囊标签（图标、名称、作品数量）筛选：“所有供应商”、Google、Anthropic、OpenAI、Qwen、DeepSeek。其中 Google 对应 `gemini`、Anthropic 对应 `claude`、OpenAI 对应 `gpt`。Harness 和服务平台只在作品卡片上显示标签，不提供单独的筛选栏。没有作品的供应商显示空状态。页面每行展示四个作品，窄屏可横向滚动。
 
-直接在网页输入的名称仅保存在当前浏览器；要让其他访问者看到更新后的名称，请编辑 `works` 数组并提交 HTML。
+模型名称是不可编辑的展示文字，前面显示对应厂商图标，不显示作品编号，也不读取浏览器中的旧名称。要修改名称，请编辑 `works` 数组并提交 HTML。
 
 ## GitHub Pages 自动部署
 
@@ -42,12 +42,14 @@
 | 模型 | Harness | 服务平台 | 文件 |
 |---|---|---|---|
 | GPT-6 Astra pro | ChatGPT 网页端 | OpenAI 官方 | svgs/gpt-web-pelican.html |
+| GPT-6.1 Sol | — | — | svgs/gpt-6.1-sol-pelican.html |
 | Gemini 3.8 Flash | DeepSeek Harness | 未注明 | svgs/gemini-3.8-flash-dsh-pelican.html |
 | Dot（个人助手，底层模型未注明） | Codex | OpenAI 官方 | svgs/codex-dot-pelican.html |
 | Opus 4.6 | DeepSeek Harness | 未注明 | svgs/claude-opus-4.6-pelican.html |
 | Gemini 3.1 Pro | DeepSeek Harness | 未注明 | svgs/gemini-3.1-pro-dsh-pelican.html |
 | Gemini 3.8 Flash | Gemini 网页端 | Google 官方 | svgs/gemini-3.8-flash-web-pelican.html |
 | DeepSeek V4.1 Flash | DeepSeek Harness | 未注明 | svgs/deepseek-v4.1-flash-dsh-pelican.html |
+| DeepSeek V4 Pro 0813 | DeepSeek Harness | 未注明 | svgs/deepseek-v4-pro-0813-dsh-pelican.html |
 | Kimi K3 | 未注明 | Kimi 官方 API | svgs/kimi-k3-official-api-pelican.html |
 
 Gemini 3.8 Flash 网页端作品原样保留外部 Tailwind CSS 和 Google Fonts 引用，需要联网加载对应资源。
