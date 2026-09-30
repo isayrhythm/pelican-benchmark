@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>鹈鹕骑自行车 · SVG 2D 动画</title>
+  <style>
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background: #101b2d;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+    .scene {
+      width: min(100vw, 1100px);
+      aspect-ratio: 16 / 9;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 22px 70px #050a14aa;
+      background: #92d9ef;
+    }
+    svg { display: block; width: 100%; height: 100%; }
+    .cloud { animation: drift 18s linear infinite; }
+    .cloud.slow { animation-duration: 26s; animation-delay: -8s; }
+    .wheel { transform-box: fill-box; transform-origin: center; animation: spin 1.3s linear infinite; }
+    .pedal { transform-box: fill-box; transform-origin: 50% 50%; animation: spin 1.3s linear infinite reverse; }
+    .rider { transform-box: fill-box; transform-origin: 50% 100%; animation: bob .65s ease-in-out infinite; }
+    .leg-a { transform-box: fill-box; transform-origin: 0 0; animation: pedalA .65s ease-in-out infinite; }
+    .leg-b { transform-box: fill-box; transform-origin: 0 0; animation: pedalB .65s ease-in-out infinite; }
+    .beak { transform-box: fill-box; transform-origin: 100% 50%; animation: peck 1.4s ease-in-out infinite; }
+    .feather { transform-box: fill-box; transform-origin: 0 100%; animation: flap 1.2s ease-in-out infinite; }
+    .feather.back { animation-delay: -.6s; }
+    .roadline { animation: road 1.2s linear infinite; }
+    .roadline.two { animation-delay: -.6s; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+    @keyframes pedalA { 0%,100% { transform: rotate(22deg); } 50% { transform: rotate(-30deg); } }
+    @keyframes pedalB { 0%,100% { transform: rotate(-30deg); } 50% { transform: rotate(22deg); } }
+    @keyframes peck { 0%,100% { transform: rotate(0); } 50% { transform: rotate(5deg); } }
+    @keyframes flap { 0%,100% { transform: rotate(0); } 50% { transform: rotate(-10deg); } }
+    @keyframes drift { from { transform: translateX(-180px); } to { transform: translateX(980px); } }
+    @keyframes road { from { transform: translateX(0); } to { transform: translateX(-220px); } }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-play-state: paused !important; }
+    }
+  </style>
+<!-- 内嵌展示适配，兼容直接从本地打开；不改变图形和动画逻辑。 -->
+<script>
+// 展示适配层：不改 SVG 图形、动画、原按钮或其事件处理。
+(()=>{
+ if(new URLSearchParams(location.search).get('embed')!=='1')return;
+ function fit(){
+  const candidates=[...document.querySelectorAll('svg[viewBox]')];
+  const art=candidates.sort((a,b)=>{
+   const area=s=>{const v=s.viewBox.baseVal;return v.width*v.height};
+   return area(b)-area(a);
+  })[0];
+  if(!art)return;
+  const stage=art.closest('#canvasWrapper, #animationContainer, div.scene, .card')||art;
+  const controls=document.querySelector('footer:has(button), .footer:has(button), .controls:has(button)');
+  const viewport=document.createElement('div');viewport.className='bb-viewport';
+  const canvas=document.createElement('div');canvas.className='bb-canvas';
+  viewport.append(canvas);canvas.append(stage);
+  stage.classList.add('bb-stage');art.classList.add('bb-art');
+  art.setAttribute('preserveAspectRatio','xMidYMid meet');
+  if(controls){controls.classList.add('bb-controls');viewport.append(controls)}
+  document.body.append(viewport);document.documentElement.classList.add('bb-embed');
+  const style=document.createElement('style');
+  style.textContent=`
+   html.bb-embed,html.bb-embed body{width:100%!important;height:100%!important;min-height:0!important;margin:0!important;padding:0!important;overflow:hidden!important}
+   .bb-embed body{display:block!important}
+   .bb-embed body>:not(.bb-viewport):not(script):not(style){display:none!important}
+   .bb-viewport{position:absolute!important;inset:0!important;display:flex!important;flex-direction:column!important;overflow:hidden!important}
+   .bb-canvas{width:100%!important;flex:1!important;min-height:0!important;overflow:hidden!important;display:flex!important;align-items:stretch!important}
+   .bb-stage{width:100%!important;height:100%!important;min-height:0!important;max-width:none!important;max-height:none!important;margin:0!important;padding:0!important;border:0!important;border-radius:0!important;box-shadow:none!important;aspect-ratio:auto!important;overflow:hidden!important}
+   svg.bb-art{display:block!important;width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;flex:1!important}
+   .bb-stage .hint{display:none!important}
+   .bb-controls{display:flex!important;flex:0 0 auto!important;flex-wrap:wrap!important;align-items:center!important;justify-content:center!important;gap:4px!important;min-width:0!important;max-width:none!important;width:100%!important;margin:0!important;padding:5px 6px!important;border:0!important;border-radius:0!important;box-shadow:none!important;font-size:10px!important;line-height:1.3!important;box-sizing:border-box!important}
+   .bb-controls .caption,.bb-controls>div:last-child:has(#cadenceBadge){display:none!important}
+   .bb-controls .controls,.bb-controls .button-group,.bb-controls>div{display:flex;align-items:center;gap:4px!important;min-width:0!important}
+   .bb-controls .slider-group,.bb-controls>div:has(>input[type=range]){flex:1 1 100%!important;max-width:none!important;min-width:0!important;gap:5px!important}
+   .bb-controls button{padding:4px 6px!important;font-size:10px!important;line-height:1.3!important;min-width:0!important;white-space:nowrap!important;border-radius:5px!important}
+   .bb-controls label,.bb-controls span{font-size:10px!important;white-space:nowrap!important}
+   .bb-controls input[type=range]{width:60px!important;min-width:20px!important;flex:1!important}
+   .bb-controls button svg{width:12px!important;height:12px!important;flex:none!important}
+  `;
+  document.head.append(style);
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit,{once:true});else fit();
+})();
+</script>
+</head>
+<body>
+  <main class="scene" aria-label="一只鹈鹕骑着自行车穿过海边的 SVG 二维动画">
+    <svg viewBox="0 0 1100 620" role="img" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#79c9ed"/><stop offset="1" stop-color="#d7f3f3"/>
+        </linearGradient>
+        <linearGradient id="sea" x1="0" y1="0" x2="1" y2="0">
+          <stop stop-color="#4bb8ce"/><stop offset="1" stop-color="#2b8eae"/>
+        </linearGradient>
+        <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="5"/>
+        </filter>
+      </defs>
+
+      <rect width="1100" height="620" fill="url(#sky)"/>
+      <circle cx="880" cy="112" r="54" fill="#fff7c2" opacity=".9"/>
+      <g class="cloud" fill="#fff" opacity=".72">
+        <ellipse cx="110" cy="142" rx="62" ry="22"/><ellipse cx="155" cy="128" rx="45" ry="32"/><ellipse cx="202" cy="143" rx="62" ry="22"/>
+      </g>
+      <g class="cloud slow" fill="#fff" opacity=".5">
+        <ellipse cx="640" cy="205" rx="72" ry="23"/><ellipse cx="692" cy="190" rx="42" ry="30"/><ellipse cx="745" cy="205" rx="64" ry="23"/>
+      </g>
+
+      <path d="M0 320 Q170 270 360 318 T710 310 T1100 290 V440 H0Z" fill="#95d9d0"/>
+      <path d="M0 360 Q160 325 335 365 T700 352 T1100 340 V485 H0Z" fill="url(#sea)"/>
+      <path d="M0 405 Q150 375 320 405 T670 400 T1100 383" fill="none" stroke="#b9f4ee" stroke-width="7" opacity=".75"/>
+      <path d="M0 445 Q180 420 360 445 T720 438 T1100 430" fill="none" stroke="#b9f4ee" stroke-width="5" opacity=".55"/>
+
+      <path d="M0 454 Q240 425 470 456 T1100 446 V620 H0Z" fill="#e6c884"/>
+      <path d="M0 504 Q210 476 410 506 T820 500 T1100 490" fill="none" stroke="#f6dda2" stroke-width="14" opacity=".9"/>
+      <path d="M0 544 H1100" stroke="#3e4d53" stroke-width="28"/>
+      <g stroke="#f9dc72" stroke-width="8" stroke-linecap="round">
+        <path class="roadline" d="M-180 544h105"/><path class="roadline" d="M120 544h105"/><path class="roadline" d="M420 544h105"/><path class="roadline" d="M720 544h105"/><path class="roadline" d="M1020 544h105"/>
+        <path class="roadline two" d="M-30 544h105"/><path class="roadline two" d="M270 544h105"/><path class="roadline two" d="M570 544h105"/><path class="roadline two" d="M870 544h105"/>
+      </g>
+
+      <g transform="translate(415 90)">
+        <ellipse cx="148" cy="427" rx="190" ry="24" fill="#1d3540" opacity=".23" filter="url(#soft)"/>
+
+        <!-- bicycle -->
+        <g fill="none" stroke="#ef654f" stroke-width="7" stroke-linejoin="round">
+          <path d="M60 405 L150 405 L112 300 Z"/>
+          <path d="M112 300 L208 405 L150 405"/>
+          <path d="M208 405 L240 299"/>
+          <path d="M229 299 h34"/>
+          <path d="M105 300 h-37"/>
+        </g>
+        <g class="wheel" fill="none" stroke="#263e4a" stroke-width="8">
+          <circle cx="60" cy="405" r="57"/><circle cx="208" cy="405" r="57"/>
+          <path d="M60 348v114M3 405h114M20 365l80 80M20 445l80-80" stroke-width="2" opacity=".65"/>
+          <path d="M208 348v114M151 405h114M168 365l80 80M168 445l80-80" stroke-width="2" opacity=".65"/>
+        </g>
+        <g class="pedal" fill="none" stroke="#263e4a" stroke-width="6">
+          <circle cx="150" cy="405" r="14"/><path d="M150 405l30-26M150 405l-30 26"/>
+          <path d="M174 376h22M96 436h22" stroke-width="5"/>
+        </g>
+        <path d="M56 347 Q65 325 92 328" fill="none" stroke="#ef654f" stroke-width="9" stroke-linecap="round"/>
+
+        <!-- pelican -->
+        <g class="rider">
+          <path d="M125 302 Q104 249 125 189 Q146 137 204 145 Q257 153 258 211 Q260 260 225 302Z" fill="#f4f0dc" stroke="#2d4850" stroke-width="5"/>
+          <path d="M149 183 Q121 151 148 117 Q174 86 215 101 Q246 113 246 148 Q235 132 211 130 Q181 129 171 160Z" fill="#fefcf0" stroke="#2d4850" stroke-width="5"/>
+          <path d="M211 127 Q250 112 318 138 Q345 149 318 166 Q265 185 219 159Z" fill="#f5a34d" stroke="#2d4850" stroke-width="5" class="beak"/>
+          <path d="M228 143 Q277 146 321 151" fill="none" stroke="#d77a32" stroke-width="4"/>
+          <circle cx="206" cy="135" r="7" fill="#26333a"/><circle cx="208" cy="132" r="2.5" fill="#fff"/>
+          <path d="M140 188 Q180 220 222 195 Q238 230 211 262 Q174 275 140 243Z" fill="#d7d8c9" opacity=".9"/>
+          <path class="feather" d="M151 194 Q105 217 120 267 Q129 291 157 302 Q168 260 177 225Z" fill="#c6c9ba" stroke="#2d4850" stroke-width="5"/>
+          <path class="feather back" d="M155 198 Q125 230 143 282" fill="none" stroke="#969d91" stroke-width="4"/>
+          <path d="M181 263 L160 321 L147 362" fill="none" stroke="#f5a34d" stroke-width="12" stroke-linecap="round" class="leg-a"/>
+          <path d="M213 262 L227 319 L205 363" fill="none" stroke="#f5a34d" stroke-width="12" stroke-linecap="round" class="leg-b"/>
+          <path d="M145 362 q-24 4-28 16 q22 8 41-2" fill="none" stroke="#f5a34d" stroke-width="8" stroke-linecap="round"/>
+          <path d="M204 363 q-17 9-18 21 q24 4 36-14" fill="none" stroke="#f5a34d" stroke-width="8" stroke-linecap="round"/>
+          <path d="M164 189 Q198 164 229 188" fill="none" stroke="#f4f0dc" stroke-width="14"/>
+          <path d="M180 178 L174 139 M207 176 L210 133" stroke="#2d4850" stroke-width="5" stroke-linecap="round"/>
+        </g>
+      </g>
+      <text x="55" y="72" fill="#1d5367" font-size="24" font-weight="700" opacity=".8">SEA BREEZE RIDE</text>
+      <text x="55" y="101" fill="#276b79" font-size="14" opacity=".7">鹈鹕的海边骑行日</text>
+    </svg>
+  </main>
+</body>
+</html>
