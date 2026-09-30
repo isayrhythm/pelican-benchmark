@@ -30,7 +30,6 @@ jobs:
           mkdir -p _site
           cp index.html _site/
           cp favicon.svg _site/
-          cp embed.js _site/
           cp LICENSE-icons.txt _site/
           cp -r svgs _site/svgs
       - name: Upload Pages artifact

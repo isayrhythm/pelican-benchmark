@@ -18,7 +18,7 @@
 
 编辑 `index.html` 中的 `works` 数组，分别填写模型名 `model`、运行工具 `harness`、服务平台 `platform`，以及可选备注 `notes`。模型名称依据提交者提供的信息记录，未注明的平台不作推断。
 
-每项作品的 `series` 字段控制所属标签，可填写 `gpt`、`claude`、`qwen`、`deepseek` 或 `gemini`。新增作品时，把动画 HTML 放进 `svgs/`，然后在数组中添加一项，例如：
+每项作品的 `series` 字段控制所属标签，可填写 `gpt`、`claude`、`qwen`、`deepseek`、`gemini` 或 `kimi`。新增作品时，把动画 HTML 放进 `svgs/`，然后在数组中添加一项，例如：
 
 ```js
 { series: 'claude', model: 'Claude 模型名', harness: '运行工具', platform: '服务平台', notes: '', file: 'svgs/你的文件.html' }
@@ -26,9 +26,7 @@
 
 顶部使用模型供应商胶囊标签（图标、名称、作品数量）筛选：“所有供应商”、Google、Anthropic、OpenAI、Qwen、DeepSeek。其中 Google 对应 `gemini`、Anthropic 对应 `claude`、OpenAI 对应 `gpt`。Harness 和服务平台只在作品卡片上显示标签，不提供单独的筛选栏。没有作品的供应商显示空状态。页面每行展示四个作品，窄屏可横向滚动。
 
-也可以直接在网页上修改模型名称，然后点击“导出展示页”，用下载的 `index.html` 替换仓库中的同名文件并提交。
-
-直接在网页输入的名称仅保存在当前浏览器；提交 HTML 或导出替换后，其他访问者才能看到更新后的名称。
+直接在网页输入的名称仅保存在当前浏览器；要让其他访问者看到更新后的名称，请编辑 `works` 数组并提交 HTML。
 
 ## GitHub Pages 自动部署
 
@@ -50,11 +48,12 @@
 | Gemini 3.1 Pro | DeepSeek Harness | 未注明 | svgs/gemini-3.1-pro-dsh-pelican.html |
 | Gemini 3.8 Flash | Gemini 网页端 | Google 官方 | svgs/gemini-3.8-flash-web-pelican.html |
 | DeepSeek V4.1 Flash | DeepSeek Harness | 未注明 | svgs/deepseek-v4.1-flash-dsh-pelican.html |
+| Kimi K3 | 未注明 | Kimi 官方 API | svgs/kimi-k3-official-api-pelican.html |
 
 Gemini 3.8 Flash 网页端作品原样保留外部 Tailwind CSS 和 Google Fonts 引用，需要联网加载对应资源。
 
 Dot 使用独立的 `assistant` 字段标记，不作为模型名。卡片标注统一为两行：上行为名称和可选说明，下行为 Harness 与平台标签。后续提交的作品统一移入 `svgs/`，源位置不再留副本；如指定路径已存在，不覆盖。
 
-展示页通过 iframe 独立播放每份作品，支持重新播放。所有作品通过 `?embed=1` 启用统一的 `embed.js` 展示适配层：移除展示框内多余的页面标题和留白、等比完整缩放 SVG、保留并紧凑排列原交互控件，不修改绘图或动画代码。画面比例不同可能有少量留边，不裁切或拉伸。Gemini 的速度滑块、车铃、欢鸣和昼夜切换，以及 Dot 的暂停按钮均保留。直接打开动画文件仍保留原来的布局。
+展示页通过 iframe 独立播放每份作品。所有作品通过 `?embed=1` 启用内嵌的统一展示适配层，不再依赖外部本地脚本：移除展示框内多余的页面标题和留白、等比完整缩放 SVG、保留并紧凑排列原交互控件，不修改绘图或动画代码。画面比例不同可能有少量留边，不裁切或拉伸。Gemini 的速度滑块、车铃、欢鸣和昼夜切换，以及 Dot 的暂停按钮均保留。直接打开动画文件仍保留原来的布局。
 
-五个系列的品牌图标取自 [Lobe Icons](https://github.com/lobehub/lobe-icons)，以 SVG 内嵌在页面中，无需在线加载。GPT 标签使用 OpenAI 标志，其余分别使用 Claude、Qwen、DeepSeek、Gemini 标志。图标库的 MIT 许可见 `LICENSE-icons.txt`；品牌商标权仍属于各自权利人。
+品牌图标取自 [Lobe Icons](https://github.com/lobehub/lobe-icons)，以 SVG 内嵌在页面中，无需在线加载。GPT 标签使用 OpenAI 标志，其余分别使用 Claude、Qwen、DeepSeek、Gemini、Kimi 标志。图标库的 MIT 许可见 `LICENSE-icons.txt`；品牌商标权仍属于各自权利人。
