@@ -45,6 +45,11 @@ body{background-color:#e9d6a1;background-image:linear-gradient(#a0783f0a 2px,tra
 main{max-width:1920px;margin:auto}
 .eyebrow{color:#7c633e;letter-spacing:2px;font-weight:bold}
 h1{font-weight:900;text-shadow:3px 3px 0 #c6a26a;letter-spacing:1px;color:#69432a}
+.eyebrow-line{display:flex;align-items:center;flex-wrap:wrap;gap:10px 16px}
+.repo-link{display:inline-flex;align-items:center;gap:7px;flex-shrink:0;padding:0;color:#65462b;text-decoration:none;font-size:13px;font-weight:bold}
+.repo-link svg{width:18px;height:18px;fill:currentColor}
+.repo-link:hover{color:#557c38}
+.repo-link:focus-visible{outline:2px solid #557c38;outline-offset:4px}
 .tab{border:2px solid #986b3e;border-radius:0;background:#fff0c9;color:#65462b;box-shadow:3px 3px 0 #b58b55;font-weight:bold;transition:none}
 .tab:hover{background:#ffe3a6;border-color:#704b2b}
 .tab[aria-selected=true]{background:#6f9148;border-color:#446432;color:#fff5d5;box-shadow:3px 3px 0 #b58b55}
@@ -76,7 +81,8 @@ h1{font-weight:900;text-shadow:3px 3px 0 #c6a26a;letter-spacing:1px;color:#69432
 #notice{border:2px solid #446432;border-radius:0;background:#d4e3aa;color:#365426;box-shadow:4px 4px 0 #bb9058}
 @media(max-width:768px){h1{text-shadow:2px 2px 0 #c6a26a}.grid{gap:12px}.card{box-shadow:3px 3px 0 #bb9058}.reaction-button,.reaction-add{border-width:1px}.prompt{box-shadow:3px 3px 0 #bf975e}}
 </style><script src="reactions.js?v=20260930-5" defer></script></head><body><main>
-<div class="eyebrow">SVG ANIMATION · MODEL GALLERY</div><h1>鹈鹕 <span>Pelican Benchmark</span></h1>
+<div class="eyebrow-line"><a class="repo-link" href="https://github.com/isayrhythm/pelican-benchmark" target="_blank" rel="noopener noreferrer" aria-label="打开 GitHub 仓库（新标签页）"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297C5.37.297 0 5.67 0 12.297c0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.043-1.61-4.043-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.729.083-.729 1.205.084 1.838 1.237 1.838 1.237 1.07 1.835 2.809 1.305 3.495.998.108-.776.418-1.305.762-1.605-2.665-.3-5.466-1.333-5.466-5.93 0-1.31.468-2.38 1.235-3.22-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23a11.5 11.5 0 013.003-.404c1.02.005 2.047.138 3.003.404 2.291-1.552 3.297-1.23 3.297-1.23.655 1.652.244 2.873.12 3.176.77.84 1.233 1.91 1.233 3.22 0 4.61-2.805 5.625-5.478 5.922.43.372.823 1.102.823 2.222 0 1.606-.015 2.898-.015 3.293 0 .322.216.694.825.576C20.565 22.093 24 17.597 24 12.297 24 5.67 18.627.297 12 .297z"/></svg>GitHub</a><div class="eyebrow">SVG ANIMATION · MODEL GALLERY</div></div>
+<h1>鹈鹕 <span>Pelican Benchmark</span></h1>
 <nav class="tabs" id="tabs" role="tablist" aria-label="模型系列"></nav>
 <div class="prompt"><span class="prompt-label">PROMPT</span><div class="prompt-text" id="prompt-text">不要联网，全靠你自己创建一个 HTML，内容是 SVG 绘制一个鹈鹕骑自行车的 2D 动画。你不需要任何测试，确认创建，无需询问我。</div><button class="copy-prompt" id="copy-prompt" type="button" aria-label="复制完整提示词">复制</button></div>
 <div class="toolbar"><strong id="series-title"></strong></div>
