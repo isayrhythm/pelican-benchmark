@@ -1,4 +1,4 @@
-# 鹈鹕 Benchmark
+# 鹈鹕 Pelican Benchmark
 
 ![SVG 动画](https://img.shields.io/badge/SVG-Animation-orange?style=flat-square&logo=svg&logoColor=white)
 ![19 份作品](https://img.shields.io/badge/Works-19-blue?style=flat-square)

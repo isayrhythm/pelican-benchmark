@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>鹈鹕 Benchmark</title><link rel="icon" type="image/svg+xml" href="favicon.svg">
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>鹈鹕 Pelican Benchmark</title><link rel="icon" type="image/svg+xml" href="favicon.svg">
 <style>
 :root{color-scheme:dark;--accent:#dcf48a;--muted:#94a59a}*{box-sizing:border-box}body{margin:0;background:#111615;color:#edf1e8;font-family:"Segoe UI","Microsoft YaHei",sans-serif}main{padding:36px 28px}.eyebrow{font-size:11px;letter-spacing:3px;color:var(--muted)}h1{font-size:clamp(30px,4vw,54px);font-weight:550;margin:14px 0 24px}h1 span{color:var(--accent)}button{font:inherit;cursor:pointer}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:25px}.tab{display:inline-flex;gap:7px;align-items:center;border:1px solid #e3e3e3;background:#fff;color:#59616c;padding:6px 10px;border-radius:999px;font-size:14px;line-height:22px;white-space:nowrap;transition:background .15s,border-color .15s,box-shadow .15s}.tab svg{display:block;width:18px;height:18px;flex-shrink:0}.tab[aria-selected=true]{color:#f5f7f4;border-color:#718374;background:#34483b;box-shadow:0 2px 5px #00000040}.tab:hover{border-color:#a8abb0;background:#f8f8f8}.tab[aria-selected=true]:hover{background:#405a48;border-color:#94aa95}.count{font-size:13px;line-height:20px;background:#f2f3f4;padding:1px 7px;border-radius:999px;color:#59616c}.tab[aria-selected=true] .count{background:#ffffff20;color:#f5f7f4}.prompt{display:flex;align-items:center;gap:14px;border-left:2px solid #627b45;padding:10px 16px;background:#1a221c;border-radius:0 6px 6px 0;color:#a9b8a8;font-size:12px;line-height:1.8;margin-bottom:24px}.prompt-label{color:#d5eb98;font-size:10px;letter-spacing:1px;flex-shrink:0}.prompt-text{flex:1;min-width:0}.copy-prompt{flex-shrink:0;border:1px solid #3c4b41;background:transparent;color:#c4d2c4;border-radius:6px;padding:6px 10px;font-size:12px;white-space:nowrap}.copy-prompt:hover{color:var(--accent);border-color:var(--accent)}.copy-prompt:focus-visible{outline:2px solid var(--accent);outline-offset:3px}.toolbar{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:13px}.toolbar strong{font-size:14px;font-weight:500}.gallery-scroll{overflow-x:auto;padding-bottom:10px}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;min-width:1040px}.card{min-width:0;border:1px solid #35453c;border-radius:11px;overflow:hidden;background:#1c2421}.card-head{height:42px;padding:10px 12px;display:flex;align-items:center;gap:8px;overflow:hidden}.card-description{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:10px;color:var(--muted)}.brand-icon{display:flex;align-items:center;justify-content:center;width:20px;height:20px;flex:0 0 20px}.brand-icon svg{display:block;width:20px;height:20px}.model{font-size:14px;font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#edf1e7}.frame-wrap{width:100%;aspect-ratio:16/10;background:#d9e7db}iframe{border:0;display:block;width:100%;height:100%}.empty{min-height:260px;display:grid;place-content:center;text-align:center;border:1px dashed #3d5042;border-radius:12px;color:var(--muted)}.empty[hidden]{display:none}.empty strong{color:#d2dfd0;font-weight:500;font-size:22px}.empty p{font-size:13px}#notice{position:fixed;bottom:25px;left:50%;transform:translateX(-50%);padding:12px 18px;background:var(--accent);color:#213016;border-radius:8px;font-size:13px;display:none;z-index:20}@media(max-width:700px){main{padding:25px 15px}.tab{padding:5px 9px;font-size:13px;gap:6px}.grid{gap:12px}}
 
@@ -39,8 +39,44 @@
  .tabs{gap:6px;margin-bottom:18px}
  .tab{padding:5px 8px;font-size:12px;gap:5px}
 }
+/* 像素风展示外壳；不改变任何作品内部的绘图与动画。 */
+:root{color-scheme:light;--accent:#557c38;--muted:#886e48}
+body{background-color:#e9d6a1;background-image:linear-gradient(#a0783f0a 2px,transparent 2px),linear-gradient(90deg,#a0783f08 2px,transparent 2px);background-size:24px 24px;color:#523822;font-family:"Courier New","Microsoft YaHei",monospace}
+main{max-width:1920px;margin:auto}
+.eyebrow{color:#7c633e;letter-spacing:2px;font-weight:bold}
+h1{font-weight:900;text-shadow:3px 3px 0 #c6a26a;letter-spacing:1px;color:#69432a}
+.tab{border:2px solid #986b3e;border-radius:0;background:#fff0c9;color:#65462b;box-shadow:3px 3px 0 #b58b55;font-weight:bold;transition:none}
+.tab:hover{background:#ffe3a6;border-color:#704b2b}
+.tab[aria-selected=true]{background:#6f9148;border-color:#446432;color:#fff5d5;box-shadow:3px 3px 0 #b58b55}
+.tab[aria-selected=true]:hover{background:#5b7e3c;border-color:#446432}
+.count{border-radius:0;background:#ead3a0;color:#78552e;padding:0 5px}
+.tab[aria-selected=true] .count{background:#456533;color:#fff5d5}
+.prompt{width:fit-content;max-width:100%;border:3px solid #9f7043;border-left:8px solid #6f9148;background:#fff3d3;border-radius:0;box-shadow:4px 4px 0 #bf975e;color:#765839}
+.prompt-label{color:#557c38;font-weight:bold}
+.copy-prompt{border:2px solid #986b3e;border-radius:0;color:#65462b;background:#f6dfaa;box-shadow:2px 2px 0 #b58b55}
+.copy-prompt:hover{background:#6f9148;color:#fff5d5;border-color:#446432}
+.toolbar strong{color:#76512e;font-weight:bold}
+.card{border:3px solid #986b3e;border-radius:0;background:#fff2cf;box-shadow:4px 4px 0 #bb9058,inset 0 0 0 2px #ffefbd}
+.card-head{background:#f4dda7}
+.model{font-weight:bold;color:#5e3c24}
+.card-meta{background:#f4dda7}
+.meta-tag{border-radius:0;border:1px solid #b28b52;background:#fff0c7;color:#79603b}
+.provider-divider{height:3px;background:repeating-linear-gradient(90deg,#b38b51 0 10px,transparent 10px 15px);margin:14px 0}
+.reactions{border-top:3px solid #986b3e;background:#fff2cf}
+.reaction-button,.reaction-add{border:2px solid #b28b52;border-radius:0;background:#fae8bb;color:#64482c;box-shadow:2px 2px 0 #d2b27c;transition:none}
+.reaction-button:hover,.reaction-add:hover{border-color:#628145;background:#e5edbd}
+.reaction-button[aria-pressed=true]{border-color:#557c38;background:#d4e3aa;color:#365426}
+.reaction-button:active,.reaction-add:active,.copy-prompt:active,.tab:active{transform:translate(2px,2px);box-shadow:none}
+.reaction-picker{border:3px solid #986b3e;border-radius:0;background:#fff2cf;color:#65462b;box-shadow:6px 6px 0 #69432a44}
+.reaction-picker-header{border-bottom:2px dashed #b28b52;padding-bottom:10px}
+.reaction-picker-header strong{color:#76512e;font-weight:bold}
+.reaction-status{color:#886e48}
+.empty{border:2px dashed #b28b52;border-radius:0;color:#886e48}
+.empty strong{color:#76512e}
+#notice{border:2px solid #446432;border-radius:0;background:#d4e3aa;color:#365426;box-shadow:4px 4px 0 #bb9058}
+@media(max-width:768px){h1{text-shadow:2px 2px 0 #c6a26a}.grid{gap:12px}.card{box-shadow:3px 3px 0 #bb9058}.reaction-button,.reaction-add{border-width:1px}.prompt{box-shadow:3px 3px 0 #bf975e}}
 </style><script src="reactions.js?v=20260930-3" defer></script></head><body><main>
-<div class="eyebrow">SVG ANIMATION · MODEL GALLERY</div><h1>鹈鹕 <span>Benchmark</span></h1>
+<div class="eyebrow">SVG ANIMATION · MODEL GALLERY</div><h1>鹈鹕 <span>Pelican Benchmark</span></h1>
 <nav class="tabs" id="tabs" role="tablist" aria-label="模型系列"></nav>
 <div class="prompt"><span class="prompt-label">PROMPT</span><div class="prompt-text" id="prompt-text">不要联网，全靠你自己创建一个 HTML，内容是 SVG 绘制一个鹈鹕骑自行车的 2D 动画。你不需要任何测试，确认创建，无需询问我。</div><button class="copy-prompt" id="copy-prompt" type="button" aria-label="复制完整提示词">复制</button></div>
 <div class="toolbar"><strong id="series-title"></strong></div>
@@ -82,7 +118,7 @@ const icons={
 };
 icons.xiaomi='<svg fill="#FF6900" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Xiaomi</title><path d="M12 0C8.016 0 4.756.255 2.493 2.516.23 4.776 0 8.033 0 12.012c0 3.98.23 7.235 2.494 9.497C4.757 23.77 8.017 24 12 24c3.983 0 7.243-.23 9.506-2.491C23.77 19.247 24 15.99 24 12.012c0-3.984-.233-7.243-2.502-9.504C19.234.252 15.978 0 12 0zM4.906 7.405h5.624c1.47 0 3.007.068 3.764.827.746.746.827 2.233.83 3.676v4.54a.15.15 0 0 1-.152.147h-1.947a.15.15 0 0 1-.152-.148V11.83c-.002-.806-.048-1.634-.464-2.051-.358-.36-1.026-.441-1.72-.458H7.158a.15.15 0 0 0-.151.147v6.98a.15.15 0 0 1-.152.148H4.906a.15.15 0 0 1-.15-.148V7.554a.15.15 0 0 1 .15-.149zm12.131 0h1.949a.15.15 0 0 1 .15.15v8.892a.15.15 0 0 1-.15.148h-1.949a.15.15 0 0 1-.151-.148V7.554a.15.15 0 0 1 .151-.149zM8.92 10.948h2.046c.083 0 .15.066.15.147v5.352a.15.15 0 0 1-.15.148H8.92a.15.15 0 0 1-.152-.148v-5.352a.15.15 0 0 1 .152-.147Z"/></svg>';
 icons.minimax="<svg height=\"1em\" style=\"flex:none;line-height:1\" viewBox=\"0 0 24 24\" width=\"1em\" xmlns=\"http://www.w3.org/2000/svg\"><title>Minimax</title><defs><linearGradient id=\"lobe-icons-minimax-_R_0_\" x1=\"0%\" x2=\"100.182%\" y1=\"50.057%\" y2=\"50.057%\"><stop offset=\"0%\" stop-color=\"#E2167E\"></stop><stop offset=\"100%\" stop-color=\"#FE603C\"></stop></linearGradient></defs><path d=\"M16.278 2c1.156 0 2.093.927 2.093 2.07v12.501a.74.74 0 00.744.709.74.74 0 00.743-.709V9.099a2.06 2.06 0 012.071-2.049A2.06 2.06 0 0124 9.1v6.561a.649.649 0 01-.652.645.649.649 0 01-.653-.645V9.1a.762.762 0 00-.766-.758.762.762 0 00-.766.758v7.472a2.037 2.037 0 01-2.048 2.026 2.037 2.037 0 01-2.048-2.026v-12.5a.785.785 0 00-.788-.753.785.785 0 00-.789.752l-.001 15.904A2.037 2.037 0 0113.441 22a2.037 2.037 0 01-2.048-2.026V18.04c0-.356.292-.645.652-.645.36 0 .652.289.652.645v1.934c0 .263.142.506.372.638.23.131.514.131.744 0a.734.734 0 00.372-.638V4.07c0-1.143.937-2.07 2.093-2.07zm-5.674 0c1.156 0 2.093.927 2.093 2.07v11.523a.648.648 0 01-.652.645.648.648 0 01-.652-.645V4.07a.785.785 0 00-.789-.78.785.785 0 00-.789.78v14.013a2.06 2.06 0 01-2.07 2.048 2.06 2.06 0 01-2.071-2.048V9.1a.762.762 0 00-.766-.758.762.762 0 00-.766.758v3.8a2.06 2.06 0 01-2.071 2.049A2.06 2.06 0 010 12.9v-1.378c0-.357.292-.646.652-.646.36 0 .653.29.653.646V12.9c0 .418.343.757.766.757s.766-.339.766-.757V9.099a2.06 2.06 0 012.07-2.048 2.06 2.06 0 012.071 2.048v8.984c0 .419.343.758.767.758.423 0 .766-.339.766-.758V4.07c0-1.143.937-2.07 2.093-2.07z\" fill=\"url(#lobe-icons-minimax-_R_0_)\" fill-rule=\"nonzero\"></path></svg>";
-const series=[{id:'all',name:'所有供应商'},{id:'gemini',name:'Google'},{id:'claude',name:'Anthropic'},{id:'gpt',name:'OpenAI'},{id:'qwen',name:'Qwen'},{id:'deepseek',name:'DeepSeek'},{id:'kimi',name:'Kimi'},{id:'xiaomi',name:'小米'},{id:'minimax',name:'MiniMax'}];
+const series=[{id:'all',name:'All'},{id:'gemini',name:'Google'},{id:'claude',name:'Anthropic'},{id:'gpt',name:'OpenAI'},{id:'qwen',name:'Qwen'},{id:'deepseek',name:'DeepSeek'},{id:'kimi',name:'Kimi'},{id:'xiaomi',name:'小米'},{id:'minimax',name:'MiniMax'}];
 let active='all';
 const gallery=document.getElementById('gallery');
 function render(){
