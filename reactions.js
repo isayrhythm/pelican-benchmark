@@ -2,6 +2,8 @@
 (()=>{
  const API='https://116.205.226.31:8049';
  const options=[["like","👍","赞"],["love","❤️","喜欢"],["clap","👏","鼓掌"],["laugh","😂","笑哭"],["wow","😮","惊讶"],["sweat-smile","😅","流汗黄豆"],["sweat","😓","汗颜"],["cry","😭","大哭"],["think","🤔","思考"],["fire","🔥","火了"],["eyes","👀","看看"],["skull","💀","绷不住了"],["smile","😀","开心"],["grin","😁","咧嘴笑"],["rolling-laugh","🤣","笑翻了"],["joy","😆","大笑"],["wink","😉","眨眼"],["cool","😎","酷"],["heart-eyes","😍","心动"],["party","🥳","庆祝"],["facepalm","🤦","捂脸"],["shrug","🤷","无奈"],["upside-down","🙃","倒脸"],["neutral","😐","无语"],["unamused","😒","不爽"],["eye-roll","🙄","白眼"],["pleading","🥺","委屈"],["sob","😢","难过"],["angry","😠","生气"],["scream","😱","震惊"],["sleep","😴","困了"],["robot","🤖","机器人"],["poop","💩","一坨"],["thumbs-down","👎","不赞"],["hundred","💯","满分"],["rocket","🚀","起飞"]];
+ const baseOrder=['like','sweat-smile','poop','scream','rolling-laugh'];
+ const priority=new Map(options.map(([key],index)=>[key,baseOrder.includes(key)?baseOrder.indexOf(key):baseOrder.length+index]));
  let visitor, persist=true;
  try{visitor=localStorage.getItem('pelican-reaction-visitor');if(!/^[a-f0-9-]{36}$/i.test(visitor||'')){visitor=crypto.randomUUID();localStorage.setItem('pelican-reaction-visitor',visitor)}}catch{persist=false;visitor=crypto.randomUUID()}
  const state=new Map(),pending=new Set();let loaded=false,loadError=false,loading;
@@ -29,7 +31,7 @@
  function refresh(){
   document.querySelectorAll('.reactions').forEach(row=>{
    const id=row.dataset.workId,value=state.get(id),busy=pending.has(id);
-   const ranked=[...options].sort((a,b)=>(value?.counts[b[0]]||0)-(value?.counts[a[0]]||0));
+   const ranked=[...options].sort((a,b)=>(value?.counts[b[0]]||0)-(value?.counts[a[0]]||0)||priority.get(a[0])-priority.get(b[0]));
    const top=new Set(ranked.slice(0,5).map(option=>option[0]));
    const add=row.querySelector('.reaction-add'),picker=row.querySelector('.reaction-picker');
    row.querySelectorAll('[data-reaction]').forEach(button=>{
