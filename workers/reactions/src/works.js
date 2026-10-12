@@ -11,6 +11,8 @@ export const WORK_IDS = [
   "gemini-3.8-flash-dsh-pelican",
   "codex-dot-pelican",
   "claude-opus-4.6-pelican",
+  "claude-sonnet-5.5-web-pelican",
+  "claude-haiku-5.5-web-pelican",
   "gemini-3.1-pro-dsh-pelican",
   "gemini-3.8-flash-web-pelican",
   "deepseek-v4.1-flash-dsh-pelican",
