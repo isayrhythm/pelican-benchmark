@@ -1,7 +1,7 @@
 # 鹈鹕 Pelican Benchmark
 
 ![SVG 动画](https://img.shields.io/badge/SVG-Animation-orange?style=flat-square&logo=svg&logoColor=white)
-![21 份作品](https://img.shields.io/badge/Works-21-blue?style=flat-square)
+![22 份作品](https://img.shields.io/badge/Works-22-blue?style=flat-square)
 ![统一 Prompt](https://img.shields.io/badge/Prompt-Identical-green?style=flat-square)
 ![独立新对话](https://img.shields.io/badge/Context-Fresh%20Chat-purple?style=flat-square)
 
@@ -39,6 +39,7 @@
 | Gemini 3.8 Flash | DeepSeek Harness | Google Antigravity | 中等（medium） |
 | Gemini 3.1 Pro | DeepSeek Harness | Google Antigravity | 中等（medium） |
 | Gemini 3.8 Flash | Gemini 网页端 | Google 官方 | 中等（medium） |
+| Gemini Argon | Gemini 网页端 | Google 官方 | — |
 | Opus 4.6 | DeepSeek Harness | Google Antigravity | 中等（medium） |
 | Sonnet 5.5 | Claude 网页端 | Anthropic 官方 | 中等（medium） |
 | Haiku 5.5 | Claude 网页端 | Anthropic 官方 | 中等（medium） |
