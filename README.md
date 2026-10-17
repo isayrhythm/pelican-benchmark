@@ -44,7 +44,7 @@
 | Sonnet 5.5 | Claude 网页端 | Anthropic 官方 | 中等（medium） |
 | Haiku 5.5 | Claude 网页端 | Anthropic 官方 | 中等（medium） |
 | DeepSeek V4.1 Flash | DeepSeek Harness | DeepSeek 官方 API | 中等（medium） |
-| DeepSeek V4.1 Flash 1017 | — | DeepSeek 官方 API | — |
+| DeepSeek V4.1 Flash 1017 | DeepSeek Harness | DeepSeek 官方 API | 中等（medium） |
 | DeepSeek V4 Pro 0813 | DeepSeek Harness | DeepSeek 官方 API | 中等（medium） |
 | Kimi K3 | DeepSeek Harness | Kimi 官方 API | 中等（medium） |
 | Qwen3.8-Max-0902 | DeepSeek Harness | Qwen 官方 | 中等（medium） |
